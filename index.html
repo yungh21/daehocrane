@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>(주)대호크레인 - 스마트 & 세이프티 크레인 엔지니어링 솔루션</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Pretendard alternative (Inter & Noto Sans KR) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#09152b',
+              navyLight: '#112240',
+              accent: '#F59E0B',      // Industrial Safety Amber
+              accentHover: '#D97706',
+              yellow: '#FBBF24',
+              slate: '#1E293B',
+              border: '#2A3C5B'
+            }
+          },
+          fontFamily: {
+            sans: ['"Noto Sans KR"', '"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Industrial Styles */
+    .hero-pattern {
+      background-color: #081121;
+      background-image: radial-gradient(rgba(245, 158, 11, 0.12) 1px, transparent 0),
+                        linear-gradient(to bottom, rgba(8, 17, 33, 0.85), #09152b);
+      background-size: 24px 24px, 100% 100%;
+    }
+    .hazard-stripe {
+      background: repeating-linear-gradient(
+        -45deg,
+        #f59e0b,
+        #f59e0b 12px,
+        #111827 12px,
+        #111827 24px
+      );
+    }
+    .glass-card {
+      background: rgba(17, 34, 64, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card-light {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .crane-glow {
+      box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.35);
+    }
+    /* Toast animation */
+    @keyframes slideInUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .animate-toast {
+      animation: slideInUp 0.3s ease-out forwards;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-amber-500 selection:text-white">
+
+  <!-- TOP NOTICE BAR (Safety First Banner) -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
+          <i class="fa-solid fa-shield-halved mr-1.5"></i>무재해 안전사업장
+        </span>
+        <span class="hidden sm:inline text-slate-400">서산 대산석유화학단지 및 중부·서해안 전역 신속 배차</span>
+      </div>
+      <div class="flex items-center space-x-4 text-xs font-medium">
+        <span class="flex items-center text-slate-300">
+          <i class="fa-solid fa-headset text-amber-400 mr-1.5"></i> 24시간 배차 문의: <strong class="ml-1 text-white">041-660-7700</strong>
+        </span>
+        <a href="mailto:dhc7700@hanmail.net" class="hidden md:flex items-center text-slate-400 hover:text-amber-400 transition">
+          <i class="fa-regular fa-envelope mr-1"></i> dhc7700@hanmail.net
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-50 bg-brand-navy/95 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform duration-200">
+            <i class="fa-solid fa-truck-monster"></i>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-2">
+              <span class="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-amber-400 transition">
+                (주)대호크레인
+              </span>
+              <span class="px-1.5 py-0.5 text-[10px] bg-amber-400/20 text-amber-400 font-bold rounded border border-amber-400/30">
+                DAEHO
+              </span>
+            </div>
+            <span class="text-[10px] tracking-widest text-slate-400 font-mono uppercase">
+              Heavy Equipment & Crane Engineering
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="#about" class="px-3.5 py-2 text-sm font-semibold text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition">회사소개</a>
+          <a href="#easysafe" class="px-3.5 py-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 rounded-lg transition flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>이지세이프 (EHS)
+          </a>
+          <a href="#equipment" class="px-3.5 py-2 text-sm font-semibold text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition">보유장비 솔루션</a>
+          <a href="#safety" class="px-3.5 py-2 text-sm font-semibold text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition">안전관리체계</a>
+          <a href="#portfolio" class="px-3.5 py-2 text-sm font-semibold text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition">주요 현장실적</a>
+          <a href="#estimate" class="px-3.5 py-2 text-sm font-semibold text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition">온라인 견적·배차</a>
+          <a href="#location" class="px-3.5 py-2 text-sm font-semibold text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition">오시는 길</a>
+        </nav>
+
+        <!-- CTA & Mobile Trigger -->
+        <div class="flex items-center gap-3">
+          <a href="#estimate" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold px-4 py-2.5 rounded-lg shadow-md hover:shadow-amber-500/20 active:scale-95 transition-all text-sm">
+            <i class="fa-solid fa-file-signature"></i>
+            <span>빠른 견적신청</span>
+          </a>
+
+          <!-- Mobile Hamburger -->
+          <button id="mobileMenuBtn" aria-label="메뉴 열기" class="lg:hidden p-2.5 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg focus:outline-none transition">
+            <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-brand-navy border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
+      <a href="#about" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-amber-400 mobile-nav-link">회사소개</a>
+      <a href="#easysafe" class="block px-3 py-2.5 rounded-md text-base font-medium text-emerald-400 hover:bg-emerald-500/10 mobile-nav-link flex items-center gap-2">
+        <i class="fa-solid fa-shield-cat"></i> 이지세이프(EASY SAFE) 스마트 EHS
+      </a>
+      <a href="#equipment" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-amber-400 mobile-nav-link">보유장비 솔루션</a>
+      <a href="#safety" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-amber-400 mobile-nav-link">스마트 안전관리</a>
+      <a href="#portfolio" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-amber-400 mobile-nav-link">현장 실적</a>
+      <a href="#estimate" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-amber-400 mobile-nav-link">견적 및 배차요청</a>
+      <a href="#location" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-amber-400 mobile-nav-link">본사 위치 안내</a>
+      <div class="pt-4 border-t border-slate-800 flex flex-col gap-2">
+        <a href="tel:041-660-7700" class="w-full text-center py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-phone-volume"></i> 24시 긴급배차 직통전화
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative hero-pattern text-white overflow-hidden py-20 lg:py-28 border-b border-slate-800">
+    <!-- Visual decorative elements -->
+    <div class="absolute inset-0 pointer-events-none opacity-20">
+      <div class="absolute right-[-10%] top-1/4 w-96 h-96 bg-amber-500/30 rounded-full blur-3xl"></div>
+      <div class="absolute left-[-5%] bottom-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/90 border border-amber-500/40 text-amber-400 text-xs sm:text-sm font-semibold">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+            충남 서산 대산석유화학단지 · 전국 산업설비 중장비 전문
+          </div>
+          
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+            무결점 무재해를 실천하는<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500">
+              스마트 크레인 엔지니어링
+            </span>
+          </h1>
+          
+          <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+            (주)대호크레인은 최신 정밀 검사를 통과한 하이드로·맹꽁이·카고 크레인 라인업과 
+            국가공인 베테랑 기사진을 바탕으로, 플랜트 대정비(T/A), 중량물 인양, 골재 납품 등 
+            가장 까다로운 고난도 현장에 <span class="text-amber-400 font-semibold">100% 무사고 완벽 시공</span>을 약속드립니다.
+          </p>
+
+          <!-- Action buttons -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#estimate" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-base shadow-lg shadow-amber-500/25 flex items-center gap-2 active:scale-95 transition-all">
+              <i class="fa-solid fa-calculator"></i>
+              <span>실시간 작업 견적·배차 문의</span>
+            </a>
+            <a href="#equipment" class="px-6 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-white font-semibold text-base border border-slate-700 flex items-center gap-2 hover:border-slate-500 transition-all">
+              <i class="fa-solid fa-list-check text-amber-400"></i>
+              <span>보유 장비 및 제원 확인</span>
+            </a>
+          </div>
+
+          <!-- Quick Trust Badge Grid -->
+          <div class="pt-8 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+              <div class="text-amber-400 text-2xl font-black">2019</div>
+              <div class="text-xs text-slate-400 mt-1">설립 / 공인법인</div>
+            </div>
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+              <div class="text-amber-400 text-2xl font-black">0件</div>
+              <div class="text-xs text-slate-400 mt-1">중대재해 Zero</div>
+            </div>
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+              <div class="text-amber-400 text-2xl font-black">13~500T</div>
+              <div class="text-xs text-slate-400 mt-1">다양한 양중 톤수</div>
+            </div>
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+              <div class="text-amber-400 text-2xl font-black">100%</div>
+              <div class="text-xs text-slate-400 mt-1">안전장치 정기검사</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Card / Crane Showcase Graphic -->
+        <div class="lg:col-span-5">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            
+            <!-- Graphic Card -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden border border-slate-700/60">
+              
+              <!-- Card Header -->
+              <div class="flex items-center justify-between pb-6 border-b border-slate-700/80">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-industry"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-white font-bold text-base leading-tight">서산·대산 산업벨트 특화</h3>
+                    <p class="text-xs text-slate-400">정밀 인양 & 중장비 원스톱 지원</p>
+                  </div>
+                </div>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>배차 가용
+                </span>
+              </div>
+
+              <!-- Graphic Vector / Crane Mockup Representation -->
+              <div class="my-6 bg-slate-950/70 rounded-xl p-5 border border-slate-800 relative">
+                <div class="flex justify-between items-center text-xs text-slate-400 mb-3">
+                  <span><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> 충남 서산시 대산읍 평신1로 221-1</span>
+                  <span class="font-mono text-amber-400 font-semibold">T: 766-81-01447</span>
+                </div>
+
+                <div class="h-44 rounded-lg bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 flex flex-col justify-center items-center text-center p-4 relative overflow-hidden group">
+                  <!-- Abstract Boom / Hook graphic -->
+                  <div class="absolute top-2 right-4 text-slate-800/60 text-8xl font-black select-none pointer-events-none">
+                    <i class="fa-solid fa-crane"></i>
+                  </div>
+                  <div class="w-16 h-16 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center text-3xl font-black mb-3 shadow-lg shadow-amber-500/30">
+                    <i class="fa-solid fa-weight-hanging"></i>
+                  </div>
+                  <h4 class="text-white font-bold text-lg">초중량물 양중 전문 솔루션</h4>
+                  <p class="text-xs text-slate-400 mt-1 max-w-xs">
+                    맹꽁이 크레인 · 올테레인(하이드로) · 카고크레인 · 건설기계 도급 및 골재
+                  </p>
+                </div>
+
+                <!-- Spec Mini Bars -->
+                <div class="mt-4 space-y-2 text-xs">
+                  <div class="flex justify-between text-slate-300">
+                    <span>안전 센서 적합도 (AML/과권)</span>
+                    <span class="text-amber-400 font-bold">100% 정상</span>
+                  </div>
+                  <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-amber-400 h-full rounded-full" style="width: 100%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Direct Hotline Box -->
+              <div class="bg-gradient-to-r from-amber-500/10 to-amber-600/20 border border-amber-500/30 rounded-xl p-4 flex items-center justify-between">
+                <div>
+                  <div class="text-[11px] text-amber-400 font-bold uppercase tracking-wider">현장 맞춤 신속 상담</div>
+                  <div class="text-lg font-bold text-white">041-660-7700</div>
+                </div>
+                <a href="tel:041-660-7700" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-lg transition active:scale-95">
+                  <i class="fa-solid fa-phone mr-1"></i> 바로 연결
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Hazard Warning Strip Decal -->
+            <div class="h-1.5 w-full hazard-stripe rounded-b-xl mt-1"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK INFO BAR (Business Registration Verified) -->
+  <div class="bg-white border-b border-slate-200 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <div>
+            <div class="text-xs text-slate-500 font-medium">정식 등록 법인사업자</div>
+            <div class="text-sm font-bold text-slate-900">(주)대호크레인 <span class="text-xs font-normal text-slate-600">대표 조한구</span></div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-id-card"></i>
+          </div>
+          <div>
+            <div class="text-xs text-slate-500 font-medium">사업자등록번호</div>
+            <div class="text-sm font-bold text-slate-900 font-mono">766-81-01447</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-map-location-dot"></i>
+          </div>
+          <div>
+            <div class="text-xs text-slate-500 font-medium">거점 사업장 소재지</div>
+            <div class="text-sm font-bold text-slate-900 truncate max-w-[200px]" title="충남 서산시 대산읍 평신1로 221-1">
+              충남 서산시 대산읍 평신1로
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-truck-ramp-box"></i>
+          </div>
+          <div>
+            <div class="text-xs text-slate-500 font-medium">주요 영업 종목</div>
+            <div class="text-sm font-bold text-slate-900">건설기계도급·대여 / 골재</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT SECTION (회사 소개 및 CEO 메시지) -->
+  <section id="about" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-100 px-3 py-1 rounded-full">
+          About Daeho Crane
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">
+          신뢰를 들어 올리는 기업, <span class="text-amber-600">(주)대호크레인</span>
+        </h2>
+        <p class="text-slate-600 mt-4 text-base sm:text-lg">
+          2019년 설립 이후, 서산 대산석유화학단지 및 전국 주요 건설 플랜트 현장에서 
+          단 한 건의 안전사고 없이 고객의 성공적인 공기를 견인해 온 전문 크레인 파트너입니다.
+        </p>
+      </div>
+
+      <!-- CEO Message & Corporate Summary -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Left: CEO Statement -->
+        <div class="lg:col-span-7 bg-white rounded-2xl p-8 sm:p-10 shadow-sm border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <span class="w-1.5 h-8 bg-amber-500 rounded-full"></span>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900">대표이사 조한구 인사말</h3>
+            </div>
+            
+            <div class="space-y-4 text-slate-600 leading-relaxed text-sm sm:text-base">
+              <p>
+                안녕하십니까, <strong>(주)대호크레인 대표이사 조한구</strong>입니다.
+              </p>
+              <p>
+                크레인 작업은 산업 현장에서 가장 높은 집중력과 안전성이 요구되는 핵심 공정입니다. 
+                저희 (주)대호크레인은 <em>"안전에는 타협이 없다"</em>는 확고한 신념 아래, 
+                전 장비의 철저한 사전 점검과 최신 과부하 방지 안전장치 도입, 그리고 수년간 숙련된 전문 조종원의 
+                책임 시공을 원칙으로 삼고 있습니다.
+              </p>
+              <p>
+                특히 충청남도 서산시 대산읍을 거점으로 하여 석유화학 플랜트 대정비(T/A), 중량물 인양, 
+                고소 철골 작업 등 까다로운 고위험 공정에서도 최적의 장비 선정과 기술 자문을 통해 고객사의 
+                공기 단축 및 원가 절감에 기여하고 있습니다.
+              </p>
+              <p>
+                언제나 신속한 배차와 빈틈없는 안전으로 고객 여러분의 든든한 사업 동반자가 되겠습니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-xs text-slate-500 font-medium">(주)대호크레인</div>
+              <div class="text-lg font-bold text-slate-900">대표이사 <span class="text-amber-600 font-extrabold">조 한 구</span></div>
+            </div>
+            <div class="h-10 px-4 bg-slate-100 rounded-lg flex items-center text-xs text-slate-500 font-mono">
+              EST. 2019.04.15
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Official Business Registry Card & Core Values -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          
+          <!-- Registry Info Card -->
+          <div class="bg-gradient-to-br from-slate-900 to-brand-navy text-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-800">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-700">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-stamp text-amber-400"></i>
+                <span class="font-bold text-sm tracking-wide">사업자등록 공인 제원</span>
+              </div>
+              <span class="text-[11px] font-mono text-slate-400">서산세무서장 확인</span>
+            </div>
+
+            <dl class="mt-4 space-y-3 text-xs sm:text-sm">
+              <div class="flex justify-between py-1 border-b border-slate-800">
+                <dt class="text-slate-400">법인명(단체명)</dt>
+                <dd class="font-bold text-white">(주)대호크레인</dd>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-800">
+                <dt class="text-slate-400">대표자</dt>
+                <dd class="font-semibold text-white">조한구</dd>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-800">
+                <dt class="text-slate-400">사업자등록번호</dt>
+                <dd class="font-mono text-amber-400 font-bold">766-81-01447</dd>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-800">
+                <dt class="text-slate-400">법인등록번호</dt>
+                <dd class="font-mono text-slate-300">161411-0045176</dd>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-800">
+                <dt class="text-slate-400">개업연월일</dt>
+                <dd class="font-mono text-slate-300">2019년 04월 15일</dd>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-800">
+                <dt class="text-slate-400">사업의 종류</dt>
+                <dd class="text-right font-medium text-slate-200">
+                  건설업 (건설기계도급 및 대여)<br>도소매업 (골재)
+                </dd>
+              </div>
+              <div class="pt-2">
+                <dt class="text-slate-400 mb-1">사업장 및 본점 소재지</dt>
+                <dd class="text-slate-200 font-medium text-xs leading-relaxed bg-slate-950/60 p-2.5 rounded-lg border border-slate-800 flex justify-between items-center">
+                  <span>충청남도 서산시 대산읍 평신1로 221-1</span>
+                  <button onclick="copyToClipboard('충청남도 서산시 대산읍 평신1로 221-1', '주소가 복사되었습니다.')" class="ml-2 text-amber-400 hover:text-amber-300 text-xs px-2 py-1 bg-slate-800 rounded">
+                    복사
+                  </button>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- 3 Pillars Mini Card -->
+          <div class="bg-amber-50 rounded-2xl p-6 border border-amber-200">
+            <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2 mb-3">
+              <i class="fa-solid fa-shield-virus text-amber-600"></i>
+              (주)대호크레인의 3대 기본 원칙
+            </h4>
+            <div class="grid grid-cols-3 gap-2 text-center text-xs">
+              <div class="bg-white p-3 rounded-xl shadow-xs border border-amber-100">
+                <div class="font-bold text-amber-600">SAFETY</div>
+                <div class="text-[11px] text-slate-600 mt-1">철저한 안전점검</div>
+              </div>
+              <div class="bg-white p-3 rounded-xl shadow-xs border border-amber-100">
+                <div class="font-bold text-amber-600">SMART</div>
+                <div class="text-[11px] text-slate-600 mt-1">신속·정밀 배차</div>
+              </div>
+              <div class="bg-white p-3 rounded-xl shadow-xs border border-amber-100">
+                <div class="font-bold text-amber-600">TRUST</div>
+                <div class="text-[11px] text-slate-600 mt-1">합리적인 견적</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEW SECTION: EASY SAFE SMART EHS SYSTEM & INTERACTIVE DASHBOARD -->
+  <section id="easysafe" class="py-20 bg-slate-950 text-white relative overflow-hidden border-b border-slate-800">
+    <!-- Background Tech Glow -->
+    <div class="absolute -top-40 right-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-40 left-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-3">
+          <i class="fa-solid fa-shield-heart"></i>
+          중대재해처벌법 및 EHS 환경·안전·보건 전산화 완벽 연동
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
+          이지세이프 <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">EASY SAFE</span>
+        </h2>
+        <p class="text-slate-300 mt-4 text-base sm:text-lg leading-relaxed">
+          (주)대호크레인은 종이 서류 중심의 관행을 탈피하고, 현장 조종원·신호수·원청 안전관리자가<br class="hidden sm:inline"> 
+          실시간으로 연결되는 <strong>모바일 스마트 안전보건 통합 플랫폼</strong>을 현장에 직접 가동합니다.
+        </p>
+      </div>
+
+      <!-- Core 6 Pillars Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        
+        <!-- Feature 1 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-signature"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition">모바일 TBM & 전자서명</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            작업 전 안전점검회의(TBM)를 모바일로 진행하고 참여 전원의 전자서명을 취득하여 실시간 클라우드에 타임스탬프 영구 아카이빙합니다.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400 font-mono flex items-center gap-1.5">
+            <i class="fa-solid fa-check"></i> 작업자 서명 누락 방지 & 실시간 전송
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-tower-broadcast"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition">크레인 IoT 실시간 모니터링</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            AML 과부하 방지장치, 붐대 인양 각도, 과권방지 리미트, 현장 실시간 풍속 센서를 연계하여 임계치 초과 시 즉각 경보를 발령합니다.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-cyan-400 font-mono flex items-center gap-1.5">
+            <i class="fa-solid fa-check"></i> 순간 풍속 10m/s 이상 시 즉시 안전알림
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-amber-500/50 transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition">스마트 위험성평가 (JSA)</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            인양 중량, 아우트리거 지반 조건, 상공 장애물 등 크레인 작업 특화 위험 요인을 사전 산출하고 감소대책을 현장 작업자 스마트폰으로 직관 배포합니다.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-amber-400 font-mono flex items-center gap-1.5">
+            <i class="fa-solid fa-check"></i> 중대재해처벌법 의무 이행 증빙 자동화
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-rose-500/50 transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-hand"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-rose-400 transition">작업중지권 (SWA) 보장</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            돌풍 발생, 지반 침하, 신호 미확보 등 급박한 위험 발견 시 조종원 및 근로자가 스마트폰 원터치로 작업을 일시 중지시키고 전파할 수 있습니다.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-rose-400 font-mono flex items-center gap-1.5">
+            <i class="fa-solid fa-check"></i> 불이익 없는 근로자 안전중지권 보장
+          </div>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-indigo-500/50 transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-qrcode"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">QR 일일 점검 & 이력 관리</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            크레인 운전석과 메인 붐에 부착된 방수 QR코드를 스캔하여 일일 법정 점검표 및 조종사 특별안전교육 이수를 스마트하게 기록·관리합니다.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-indigo-400 font-mono flex items-center gap-1.5">
+            <i class="fa-solid fa-check"></i> 기기 점검 누락 제로 및 허위 점검 방지
+          </div>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-file-pdf"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition">EHS 원클릭 보고서 생성</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+            원청사 및 노동부 정기 점검 제출용 안전보건계획서, 일일 TBM 일지, 장비 안전점검표를 1클릭으로 공식 PDF 규격으로 즉각 출력합니다.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400 font-mono flex items-center gap-1.5">
+            <i class="fa-solid fa-check"></i> 원청 안전팀 행정 검토 시간 90% 단축
+          </div>
+        </div>
+
+      </div>
+
+      <!-- INTERACTIVE EASY SAFE EHS LIVE SIMULATOR -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-800 gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+              <span class="font-mono text-xs uppercase tracking-wider text-emerald-400 font-bold">EASY SAFE LIVE GATEWAY</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mt-1">대호크레인 EHS 스마트 현장 관제 시뮬레이터</h3>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="refreshSimulatorData()" class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300 transition flex items-center gap-1.5">
+              <i class="fa-solid fa-arrows-rotate"></i> 센서 데이터 갱신
+            </button>
+            <span class="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">
+              무재해: 2,576일째
+            </span>
+          </div>
+        </div>
+
+        <!-- Live Dashboard Metrics -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+          <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800/80">
+            <div class="text-[11px] text-slate-400">당일 현장 TBM 이행률</div>
+            <div class="text-2xl font-black text-emerald-400 mt-1" id="metricTbm">100%</div>
+            <div class="text-[10px] text-slate-500 mt-1">전자서명 18명 완료</div>
+          </div>
+          <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800/80">
+            <div class="text-[11px] text-slate-400">현장 실시간 풍속</div>
+            <div class="text-2xl font-black text-cyan-400 mt-1" id="metricWind">3.2 m/s</div>
+            <div class="text-[10px] text-emerald-400 mt-1">● 안전 양중 조건</div>
+          </div>
+          <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800/80">
+            <div class="text-[11px] text-slate-400">크레인 AML 안전모멘트</div>
+            <div class="text-2xl font-black text-amber-400 mt-1" id="metricAml">64%</div>
+            <div class="text-[10px] text-slate-500 mt-1">정격 하중 여유 36%</div>
+          </div>
+          <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800/80">
+            <div class="text-[11px] text-slate-400">중대재해 고위험 알림</div>
+            <div class="text-2xl font-black text-white mt-1">0 건</div>
+            <div class="text-[10px] text-emerald-400 mt-1">정상 운행 상태</div>
+          </div>
+        </div>
+
+        <!-- Interactive Control Bar -->
+        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 flex flex-wrap items-center justify-between gap-4 text-xs">
+          <div class="flex items-center gap-3">
+            <span class="text-slate-400">가상 긴급 상황 테스트:</span>
+            <button onclick="triggerEmergencyDemo('wind')" class="px-3 py-1.5 rounded bg-cyan-900/60 hover:bg-cyan-800 text-cyan-200 border border-cyan-700/60 font-semibold transition">
+              돌풍 경보 (12m/s)
+            </button>
+            <button onclick="triggerEmergencyDemo('swa')" class="px-3 py-1.5 rounded bg-rose-900/60 hover:bg-rose-800 text-rose-200 border border-rose-700/60 font-semibold transition">
+              작업중지권 (SWA) 발동
+            </button>
+            <button onclick="triggerEmergencyDemo('reset')" class="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition">
+              정상 복귀
+            </button>
+          </div>
+          <div class="text-slate-400 flex items-center gap-1 font-mono">
+            <i class="fa-solid fa-lock text-emerald-400"></i> EasySafe 보안 프로토콜 256-bit SSL 암호화
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EQUIPMENT & SERVICES (보유 장비 및 사업 영역) -->
+  <section id="equipment" class="py-20 bg-slate-900 text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full">
+            Equipment & Services
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 tracking-tight">
+            보유 장비 및 전문 사업 솔루션
+          </h2>
+          <p class="text-slate-400 mt-2 text-sm sm:text-base max-w-xl">
+            소형 협소지 작업부터 500톤급 대형 플랜트 양중까지 최적의 크레인 기종과 토목 골재 납품을 원스톱으로 지원합니다.
+          </p>
+        </div>
+
+        <!-- Filter tabs for equipments -->
+        <div class="mt-6 md:mt-0 flex flex-wrap gap-2" id="equipmentTabs">
+          <button onclick="filterEquipment('all')" class="equipment-tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-amber-500 text-slate-950 transition">
+            전체 보기
+          </button>
+          <button onclick="filterEquipment('rough')" class="equipment-tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition">
+            맹꽁이 크레인 (13T~100T)
+          </button>
+          <button onclick="filterEquipment('hydro')" class="equipment-tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition">
+            하이드로/올테레인 (50T~500T)
+          </button>
+          <button onclick="filterEquipment('cargo')" class="equipment-tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition">
+            카고 / 골재도급
+          </button>
+        </div>
+      </div>
+
+      <!-- Equipment Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="equipmentGrid">
+        
+        <!-- Card 1: 맹꽁이 25T / 50T -->
+        <div class="equipment-card bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/80 hover:border-amber-500/60 transition-all duration-300 hover:-translate-y-1 group" data-category="rough">
+          <div class="h-48 bg-gradient-to-tr from-slate-950 to-slate-800 p-6 flex flex-col justify-between relative overflow-hidden">
+            <div class="flex justify-between items-start z-10">
+              <span class="px-2.5 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-bold rounded">
+                Rough Terrain
+              </span>
+              <span class="text-xs font-mono text-slate-400">13T ~ 70T</span>
+            </div>
+            <div class="z-10">
+              <div class="text-2xl font-black text-white group-hover:text-amber-400 transition">맹꽁이 크레인</div>
+              <p class="text-xs text-slate-400">험지 기동 및 도심 협소 공간 맞춤형</p>
+            </div>
+            <!-- Background Icon Silhouette -->
+            <i class="fa-solid fa-truck-moving absolute right-4 -bottom-4 text-7xl text-slate-700/30 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="p-6 space-y-4">
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">주요 작업</span>
+                <span class="font-medium text-white">협소지 골조, 기계 반입, 철골 양중</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">선회 반경</span>
+                <span class="font-medium text-white">4륜 구동 & 4륜 조향(크랩 주행)</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">붐 길이 사양</span>
+                <span class="font-medium text-amber-400">최대 31m ~ 44m 풀 익스텐션</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">안전 제어</span>
+                <span class="font-medium text-emerald-400">컴퓨터 모니터링 AML 완비</span>
+              </li>
+            </ul>
+            <button onclick="openSpecModal('맹꽁이 크레인 (Rough Terrain 13T~70T)', '좁은 진입로, 도심지 신축 빌딩, 석유화학 배관 트러스 사이 협소 구역에 최적화된 장비입니다. 4륜 독립 조향을 통해 최소 회전반경으로 진입이 가능합니다.')" class="w-full py-2.5 rounded-lg bg-slate-700/60 hover:bg-amber-500 hover:text-slate-950 text-slate-200 text-xs font-bold transition flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-circle-info"></i> 상세 제원 및 적용 현장 보기
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: 대형 하이드로 / 올테레인 100T~500T -->
+        <div class="equipment-card bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/80 hover:border-amber-500/60 transition-all duration-300 hover:-translate-y-1 group" data-category="hydro">
+          <div class="h-48 bg-gradient-to-tr from-slate-950 to-slate-800 p-6 flex flex-col justify-between relative overflow-hidden">
+            <div class="flex justify-between items-start z-10">
+              <span class="px-2.5 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-bold rounded">
+                All Terrain Crane
+              </span>
+              <span class="text-xs font-mono text-slate-400">100T ~ 500T</span>
+            </div>
+            <div class="z-10">
+              <div class="text-2xl font-black text-white group-hover:text-amber-400 transition">하이드로 · 올테레인</div>
+              <p class="text-xs text-slate-400">초고층 인양 및 중량 플랜트 설비 시공</p>
+            </div>
+            <i class="fa-solid fa-weight-hanging absolute right-4 -bottom-4 text-7xl text-slate-700/30 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="p-6 space-y-4">
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">주요 작업</span>
+                <span class="font-medium text-white">플랜트 타워/드럼 거치, 교량 거더</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">붐 & 집(Jib)</span>
+                <span class="font-medium text-white">메인 붐 60m+ / 보조 짚 30m+</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">카운터 웨이트</span>
+                <span class="font-medium text-amber-400">분할 장착형 고하중 밸런스</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">안전 시스템</span>
+                <span class="font-medium text-emerald-400">풍속계 센서 연동 자동 차단</span>
+              </li>
+            </ul>
+            <button onclick="openSpecModal('올테레인 크레인 (All Terrain 100T~500T)', '서산 대산단지 타워 교체, 압력용기 인양, 교량 가설 등 대형 메가 프로젝트에 투입되는 최신 중장비입니다. 초정밀 유압 제어로 오차 없는 결합을 보장합니다.')" class="w-full py-2.5 rounded-lg bg-slate-700/60 hover:bg-amber-500 hover:text-slate-950 text-slate-200 text-xs font-bold transition flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-circle-info"></i> 상세 제원 및 적용 현장 보기
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: 카고 크레인 & 운송 연계 -->
+        <div class="equipment-card bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/80 hover:border-amber-500/60 transition-all duration-300 hover:-translate-y-1 group" data-category="cargo">
+          <div class="h-48 bg-gradient-to-tr from-slate-950 to-slate-800 p-6 flex flex-col justify-between relative overflow-hidden">
+            <div class="flex justify-between items-start z-10">
+              <span class="px-2.5 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-bold rounded">
+                Cargo Crane
+              </span>
+              <span class="text-xs font-mono text-slate-400">5T ~ 25T</span>
+            </div>
+            <div class="z-10">
+              <div class="text-2xl font-black text-white group-hover:text-amber-400 transition">카고 크레인 & 운송</div>
+              <p class="text-xs text-slate-400">자재 적재·운반·양중 동시 원스톱 해결</p>
+            </div>
+            <i class="fa-solid fa-dolly absolute right-4 -bottom-4 text-7xl text-slate-700/30 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="p-6 space-y-4">
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">주요 작업</span>
+                <span class="font-medium text-white">가설재, 컨테이너, 변압기, 배관</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">특장점</span>
+                <span class="font-medium text-white">운송과 현장 설치를 1대로 동시 해결</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">작업 반경</span>
+                <span class="font-medium text-amber-400">광폭 아우트리거 안정 지지</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">배차 지원</span>
+                <span class="font-medium text-emerald-400">서산/당진/태안 즉시대기</span>
+              </li>
+            </ul>
+            <button onclick="openSpecModal('카고 크레인 (Cargo Crane 5T~25T)', '자재 적재 및 원거리 이동, 현장 즉시 하역/설치가 한 번에 이루어지는 복합 기동 장비입니다. 운송비와 장비 임대비를 동시에 절감할 수 있습니다.')" class="w-full py-2.5 rounded-lg bg-slate-700/60 hover:bg-amber-500 hover:text-slate-950 text-slate-200 text-xs font-bold transition flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-circle-info"></i> 상세 제원 및 적용 현장 보기
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 4: 건설기계 도급 및 장단기 임대 -->
+        <div class="equipment-card bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/80 hover:border-amber-500/60 transition-all duration-300 hover:-translate-y-1 group" data-category="hydro">
+          <div class="h-48 bg-gradient-to-tr from-slate-950 to-slate-800 p-6 flex flex-col justify-between relative overflow-hidden">
+            <div class="flex justify-between items-start z-10">
+              <span class="px-2.5 py-1 bg-blue-500/20 text-blue-400 border border-blue-500/40 text-xs font-bold rounded">
+                Contract & Lease
+              </span>
+              <span class="text-xs font-mono text-slate-400">장·단기 임대</span>
+            </div>
+            <div class="z-10">
+              <div class="text-2xl font-black text-white group-hover:text-amber-400 transition">건설기계 도급·대여</div>
+              <p class="text-xs text-slate-400">공식 인허가 보유 정식 임대계약 체결</p>
+            </div>
+            <i class="fa-solid fa-file-contract absolute right-4 -bottom-4 text-7xl text-slate-700/30 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="p-6 space-y-4">
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">계약 형태</span>
+                <span class="font-medium text-white">일대, 월대, 프로젝트 도급 턴키</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">보험 보장</span>
+                <span class="font-medium text-white">영업배상책임보험 100% 가입</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">행정 지원</span>
+                <span class="font-medium text-amber-400">장비 검사증, 기사 서류 완비</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">현장 관리</span>
+                <span class="font-medium text-emerald-400">안전관리계획서 제출 협조</span>
+              </li>
+            </ul>
+            <button onclick="openSpecModal('건설기계 도급 및 대여 솔루션', '건설기계관리법에 따른 안전 정기검사필 장비 및 베테랑 운전원이 투입됩니다. 대규모 플랜트 T/A 및 건설 현장 전담 장기 계약 시 우대 혜택을 제공합니다.')" class="w-full py-2.5 rounded-lg bg-slate-700/60 hover:bg-amber-500 hover:text-slate-950 text-slate-200 text-xs font-bold transition flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-circle-info"></i> 임대 절차 및 서류 안내
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 5: 플랜트 T/A 및 특수 중량물 거치 -->
+        <div class="equipment-card bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/80 hover:border-amber-500/60 transition-all duration-300 hover:-translate-y-1 group" data-category="rough">
+          <div class="h-48 bg-gradient-to-tr from-slate-950 to-slate-800 p-6 flex flex-col justify-between relative overflow-hidden">
+            <div class="flex justify-between items-start z-10">
+              <span class="px-2.5 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-bold rounded">
+                Plant Engineering
+              </span>
+              <span class="text-xs font-mono text-slate-400">현장 정밀 설계</span>
+            </div>
+            <div class="z-10">
+              <div class="text-2xl font-black text-white group-hover:text-amber-400 transition">플랜트 정기보수(T/A)</div>
+              <p class="text-xs text-slate-400">석유화학 정밀 배관 및 반응기 거치</p>
+            </div>
+            <i class="fa-solid fa-oil-well absolute right-4 -bottom-4 text-7xl text-slate-700/30 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="p-6 space-y-4">
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">전문 영역</span>
+                <span class="font-medium text-white">대산단지 화학·정유 시설 셧다운 공사</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">사전 엔지니어링</span>
+                <span class="font-medium text-white">양중 시뮬레이션 및 작업반경 산출</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">신호 체계</span>
+                <span class="font-medium text-amber-400">전담 전문 신호수 2인 1조 배치</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">안전 실적</span>
+                <span class="font-medium text-emerald-400">고위험 작업 무재해 달성</span>
+              </li>
+            </ul>
+            <button onclick="openSpecModal('플랜트 T/A 및 중량물 특수 엔지니어링', '석유화학 공장 셧다운(Turn-Around) 기간의 신속하고 안전한 설비 교체 작업을 전문으로 수행합니다. 위험물 취급구역 내 화기/방폭 안전 규정을 완벽 준수합니다.')" class="w-full py-2.5 rounded-lg bg-slate-700/60 hover:bg-amber-500 hover:text-slate-950 text-slate-200 text-xs font-bold transition flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-circle-info"></i> 플랜트 공법 안내
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 6: 골재 도소매 및 토목 부대 지원 -->
+        <div class="equipment-card bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/80 hover:border-amber-500/60 transition-all duration-300 hover:-translate-y-1 group" data-category="cargo">
+          <div class="h-48 bg-gradient-to-tr from-slate-950 to-slate-800 p-6 flex flex-col justify-between relative overflow-hidden">
+            <div class="flex justify-between items-start z-10">
+              <span class="px-2.5 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/40 text-xs font-bold rounded">
+                Aggregate Supply
+              </span>
+              <span class="text-xs font-mono text-slate-400">공식 종목: 골재</span>
+            </div>
+            <div class="z-10">
+              <div class="text-2xl font-black text-white group-hover:text-amber-400 transition">골재 도소매 & 토목자재</div>
+              <p class="text-xs text-slate-400">크레인 세팅용 지반 보강재 및 현장 골재</p>
+            </div>
+            <i class="fa-solid fa-mountain absolute right-4 -bottom-4 text-7xl text-slate-700/30 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <div class="p-6 space-y-4">
+            <ul class="text-xs text-slate-300 space-y-2">
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">취급 품목</span>
+                <span class="font-medium text-white">쇄석, 모래, 자갈, 혼합골재, 마사토</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">현장 안전 연계</span>
+                <span class="font-medium text-white">크레인 아우트리거 지반 평탄화용 보강</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">운송 지원</span>
+                <span class="font-medium text-amber-400">덤프트럭 신속 배차 직송</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="text-slate-400">공급 안정성</span>
+                <span class="font-medium text-emerald-400">우수 품질 규격 골재 확보</span>
+              </li>
+            </ul>
+            <button onclick="openSpecModal('골재 도소매 및 현장 지반 보강 지원', '사업자등록 공인 종목인 골재 공급을 통해 건설 기초 토목부터 크레인 대형 양중 시 필수적인 아우트리거 지반 보강 골재까지 완벽하게 원스톱 지원합니다.')" class="w-full py-2.5 rounded-lg bg-slate-700/60 hover:bg-amber-500 hover:text-slate-950 text-slate-200 text-xs font-bold transition flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-circle-info"></i> 골재 납품 품목 확인
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SAFETY MANAGEMENT SYSTEM (스마트 안전관리 체계) -->
+  <section id="safety" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Text -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-100 px-3 py-1 rounded-full">
+            Zero Accident Standard
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            사람의 생명보다 앞서는<br>
+            양중 작업은 없습니다.
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            (주)대호크레인은 중대재해처벌법 및 산업안전보건법 기준을 엄격히 상회하는 
+            <strong>4단계 스마트 안전 프로세스</strong>를 가동합니다. 모든 현장 투입 전 사전 위험성 평가(JSA)를 수립하고, 
+            국가공인 검사 기관의 정기 검사를 필한 장비만을 투입합니다.
+          </p>
+
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="text-xs sm:text-sm text-slate-700">
+                <strong>정밀 하중제한장치(AML) 전 장비 기본 탑재</strong>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="text-xs sm:text-sm text-slate-700">
+                <strong>과권방지장치 및 풍속 감지 자동 인터록 시스템</strong>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="text-xs sm:text-sm text-slate-700">
+                <strong>무사고 경력 10년 이상 베테랑 전문 조종원 투입</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="document.getElementById('estimate').scrollIntoView({behavior: 'smooth'})" class="px-5 py-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition flex items-center gap-2">
+              <i class="fa-solid fa-clipboard-check text-amber-400"></i>
+              안전관리계획서 및 서류 지원 문의
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: 4-Step Safety Flow Cards -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <!-- Step 1 -->
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-amber-500 text-slate-950 font-black text-lg flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
+              01
+            </div>
+            <h3 class="text-base font-bold text-slate-900 group-hover:text-amber-600 transition">현장 정밀 실측 & JSA 수립</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              작업 반경, 인양물 중량, 지반 지지력, 상공 전선 및 장애물을 사전 분석하여 작업계획서를 작성합니다.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-amber-500 text-slate-950 font-black text-lg flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
+              02
+            </div>
+            <h3 class="text-base font-bold text-slate-900 group-hover:text-amber-600 transition">장비 출동 전 법정 안전검사</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              와이어로프 마모도, 유압 밸브 누유, 훅 해지장치, AML 정상 작동 여부를 일일 점검표로 확인합니다.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-amber-500 text-slate-950 font-black text-lg flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
+              03
+            </div>
+            <h3 class="text-base font-bold text-slate-900 group-hover:text-amber-600 transition">TBM & 무선 통신 신호 체계</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              작업 개시 전 조종원과 전담 신호수 간 표준 수신호 및 전용 무전 채널을 점검하고 반경 내 출입을 통제합니다.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-amber-500 text-slate-950 font-black text-lg flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform">
+              04
+            </div>
+            <h3 class="text-base font-bold text-slate-900 group-hover:text-amber-600 transition">안전 정밀 인양 & 피드백</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              권상 및 선회 속도 준수, 급제동 금지, 흔들림 방지 가이드 로프 통제를 통해 무결점 안착을 완수합니다.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WORK PORTFOLIO (주요 현장 실적) -->
+  <section id="portfolio" class="py-20 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-100 px-3 py-1 rounded-full">
+          Project Field Works
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">
+          주요 현장 시공 실적
+        </h2>
+        <p class="text-slate-600 mt-2 text-sm sm:text-base">
+          철저한 안전과 약속된 공기를 준수하며 검증된 (주)대호크레인의 현장 프로젝트입니다.
+        </p>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Item 1 -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition">
+          <div class="h-44 bg-slate-800 p-5 flex flex-col justify-between text-white relative">
+            <div class="flex justify-between items-center text-xs">
+              <span class="px-2 py-0.5 bg-amber-500 text-slate-950 font-bold rounded">석유화학 플랜트</span>
+              <span class="text-slate-400">서산 대산공단</span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white">대산 화학단지 대정비(T/A) 열교환기 교체</h3>
+              <p class="text-xs text-slate-300 mt-1">200톤 올테레인 크레인 투입</p>
+            </div>
+          </div>
+          <div class="p-5">
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              고온·고압 배관 밀집 구역에서 간섭 없이 45톤급 열교환기 및 반응기를 오차 5mm 이내로 정밀 안착 완료.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[11px] text-slate-500 font-medium">
+              <span class="bg-slate-100 px-2 py-0.5 rounded">#플랜트T/A</span>
+              <span class="bg-slate-100 px-2 py-0.5 rounded">#중량물양중</span>
+              <span class="bg-slate-100 px-2 py-0.5 rounded">#무재해</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition">
+          <div class="h-44 bg-slate-900 p-5 flex flex-col justify-between text-white relative">
+            <div class="flex justify-between items-center text-xs">
+              <span class="px-2 py-0.5 bg-blue-500 text-white font-bold rounded">산업단지 건축</span>
+              <span class="text-slate-400">충남 당진·서산</span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white">대형 물류센터 철골 메가트러스 건립</h3>
+              <p class="text-xs text-slate-300 mt-1">70톤 맹꽁이 및 100톤 하이드로 연계</p>
+            </div>
+          </div>
+          <div class="p-5">
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              장스팬 철골 트러스 2대 동시 협조 양중(Tandem Lift) 기법 적용, 강풍 대비 자동 계측 후 안전 시공.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[11px] text-slate-500 font-medium">
+              <span class="bg-slate-100 px-2 py-0.5 rounded">#철골조립</span>
+              <span class="bg-slate-100 px-2 py-0.5 rounded">#동시인양</span>
+              <span class="bg-slate-100 px-2 py-0.5 rounded">#맹꽁이크레인</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition">
+          <div class="h-44 bg-slate-800 p-5 flex flex-col justify-between text-white relative">
+            <div class="flex justify-between items-center text-xs">
+              <span class="px-2 py-0.5 bg-emerald-600 text-white font-bold rounded">토목 및 교량</span>
+              <span class="text-slate-400">서해안 연계 도로망</span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white">국도 교량 강박스 거더 가설 거치</h3>
+              <p class="text-xs text-slate-300 mt-1">300톤 올테레인 2대 동시 시공</p>
+            </div>
+          </div>
+          <div class="p-5">
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              교통 통제 최소화를 위한 야간 특별 작업 수행, 하천변 연약지반 골재 보강재 사전 타설 후 안전 작업 완수.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[11px] text-slate-500 font-medium">
+              <span class="bg-slate-100 px-2 py-0.5 rounded">#교량거치</span>
+              <span class="bg-slate-100 px-2 py-0.5 rounded">#골재지반보강</span>
+              <span class="bg-slate-100 px-2 py-0.5 rounded">#올테레인</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ESTIMATE & DISPATCH REQUEST FORM (온라인 견적 및 배차 상담) -->
+  <section id="estimate" class="py-20 bg-slate-900 text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left Help Column -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full">
+            Fast Quote & Dispatch
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            신속한 장비 배차 및<br>
+            <span class="text-amber-400">정확한 무료 견적</span>을 약속합니다
+          </h2>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            인양물의 무게, 현장 진입 여건, 작업 높이를 알려주시면 
+            가장 적합한 톤수의 장비와 공사비를 신속하게 산출하여 드립니다.
+          </p>
+
+          <!-- Direct Hotline Cards -->
+          <div class="space-y-3 pt-2">
+            <a href="tel:041-660-7700" class="p-4 rounded-xl bg-slate-800 hover:bg-slate-700/80 border border-slate-700 flex items-center justify-between transition group">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-lg">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">긴급 배차 및 유선 상담</div>
+                  <div class="text-base font-bold text-white group-hover:text-amber-400">041-660-7700</div>
+                </div>
+              </div>
+              <span class="text-xs text-amber-400 font-semibold">전화 걸기 &rarr;</span>
+            </a>
+
+            <div class="p-4 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
+                  <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">공식 이메일 접수</div>
+                  <div class="text-base font-bold text-white font-mono">dhc7700@hanmail.net</div>
+                </div>
+              </div>
+              <button onclick="copyToClipboard('dhc7700@hanmail.net', '이메일 주소가 복사되었습니다.')" class="text-xs bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-1.5 rounded transition">
+                이메일 복사
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-xs text-amber-300/90 leading-relaxed">
+            <i class="fa-solid fa-triangle-exclamation mr-1 text-amber-400"></i>
+            <strong>배차 팁:</strong> 도면이나 작업 반경 사진이 있으신 경우 이메일(dhc7700@hanmail.net)로 첨부해 주시면 더욱 정확하고 빠른 사전 시뮬레이션이 가능합니다.
+          </div>
+        </div>
+
+        <!-- Right: Interactive Form -->
+        <div class="lg:col-span-7">
+          <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-xl">
+            <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+              <i class="fa-solid fa-pen-ruler text-amber-400"></i>
+              작업 조건 입력 (실시간 상담 접수)
+            </h3>
+            <p class="text-xs text-slate-400 mb-6">입력하신 정보는 배차 및 견적 산출 목적으로만 안전하게 사용됩니다.</p>
+
+            <form id="quoteForm" onsubmit="handleQuoteSubmit(event)" class="space-y-4 text-xs sm:text-sm">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-slate-300 font-medium mb-1">담당자 성함 / 업체명 <span class="text-amber-400">*</span></label>
+                  <input type="text" id="clientName" required placeholder="예: 현대건설 / 홍길동 부장" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
+                </div>
+                <div>
+                  <label class="block text-slate-300 font-medium mb-1">연락처 <span class="text-amber-400">*</span></label>
+                  <input type="tel" id="clientPhone" required placeholder="예: 010-1234-5678" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-slate-300 font-medium mb-1">작업 예정 일자 <span class="text-amber-400">*</span></label>
+                  <input type="date" id="workDate" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                </div>
+                <div>
+                  <label class="block text-slate-300 font-medium mb-1">현장 지역 (시/군/읍) <span class="text-amber-400">*</span></label>
+                  <input type="text" id="workLocation" required placeholder="예: 서산시 대산읍 독곶리 플랜트" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-slate-300 font-medium mb-1">희망 기종 / 예상 톤수</label>
+                  <select id="craneType" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                    <option value="상담 후 최적 톤수 결정">상담 후 추천 요청 (기종 미정)</option>
+                    <option value="맹꽁이 크레인 13T~25T">맹꽁이 크레인 (13T ~ 25T)</option>
+                    <option value="맹꽁이 크레인 50T~70T">맹꽁이 크레인 (50T ~ 70T)</option>
+                    <option value="하이드로/올테레인 100T~200T">하이드로/올테레인 (100T ~ 200T)</option>
+                    <option value="하이드로/올테레인 300T~500T">대형 올테레인 (300T ~ 500T)</option>
+                    <option value="카고 크레인 5T~25T">카고 크레인 (5T ~ 25T)</option>
+                    <option value="골재 납품 및 도급 문의">골재 납품 및 부대 도급</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-slate-300 font-medium mb-1">인양물 중량 / 작업 높이</label>
+                  <input type="text" id="liftWeight" placeholder="예: 약 15톤 / 지상 25미터" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-slate-300 font-medium mb-1">상세 작업 내용 및 요청사항</label>
+                <textarea id="workDetails" rows="3" placeholder="예: 서산 대산 플랜트 반응기 교체 작업, 진입로 폭 4m, 야간 작업 가능 여부 문의" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"></textarea>
+              </div>
+
+              <div class="flex items-center gap-2 pt-2">
+                <input type="checkbox" id="privacyAgree" required class="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0">
+                <label for="privacyAgree" class="text-xs text-slate-400">
+                  견적 상담을 위한 최소 개인정보 수집 및 연락에 동의합니다.
+                </label>
+              </div>
+
+              <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm sm:text-base shadow-lg shadow-amber-500/20 active:scale-95 transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-paper-plane"></i>
+                견적 및 배차 신청 접수하기
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LOCATION & CONTACT (오시는 길 및 본사 안내) -->
+  <section id="location" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-100 px-3 py-1 rounded-full">
+          Location & Access
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">
+          오시는 길 및 본사 차고지
+        </h2>
+        <p class="text-slate-600 mt-2 text-sm sm:text-base">
+          대산항 및 서산 대산석유화학단지와 10분 이내 직결되는 최적의 물류 요충지에 위치하고 있습니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Interactive Map Preview Graphic & Buttons -->
+        <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2 text-slate-900 font-bold">
+                <i class="fa-solid fa-location-crosshairs text-amber-600"></i>
+                <span>본사 및 장비 야적장 위치</span>
+              </div>
+              <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded font-mono">
+                충남 서산시 대산읍 평신1로 221-1
+              </span>
+            </div>
+
+            <!-- Stylized Map Mock Container -->
+            <div class="h-64 sm:h-72 w-full rounded-xl bg-slate-100 border border-slate-200 relative overflow-hidden flex flex-col items-center justify-center p-6 text-center">
+              <!-- Grid background representing map -->
+              <div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 16px 16px;"></div>
+              
+              <div class="relative z-10 space-y-3">
+                <div class="w-14 h-14 bg-amber-500 text-slate-950 rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-md">
+                  <i class="fa-solid fa-map-pin"></i>
+                </div>
+                <div>
+                  <h4 class="font-extrabold text-slate-900 text-base sm:text-lg">(주)대호크레인 본사 / 차고지</h4>
+                  <p class="text-xs text-slate-600 mt-0.5">충청남도 서산시 대산읍 평신1로 221-1</p>
+                </div>
+                <div class="inline-block bg-white px-3 py-1 rounded-full text-xs font-semibold text-amber-700 shadow-xs border border-amber-200">
+                  <i class="fa-solid fa-road mr-1"></i> 대산항 및 석유화학산단 인접
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Map Links -->
+          <div class="grid grid-cols-3 gap-3 mt-6 pt-6 border-t border-slate-100">
+            <a href="https://map.naver.com/v5/search/%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%EC%84%9C%EC%82%B0%EC%8B%9C%20%EB%8C%80%EC%82%B0%EC%9D%8D%20%ED%8F%89%EC%8B%A01%EB%A1%9C%20221-1" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold rounded-lg text-center transition flex items-center justify-center gap-1">
+              <i class="fa-solid fa-map"></i> 네이버 지도
+            </a>
+            <a href="https://map.kakao.com/link/search/충청남도 서산시 대산읍 평신1로 221-1" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-900 text-xs font-bold rounded-lg text-center transition flex items-center justify-center gap-1">
+              <i class="fa-solid fa-location-dot"></i> 카카오맵
+            </a>
+            <button onclick="copyToClipboard('충청남도 서산시 대산읍 평신1로 221-1', '내비게이션 주소가 복사되었습니다.')" class="py-2.5 px-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-lg text-center transition flex items-center justify-center gap-1">
+              <i class="fa-solid fa-copy"></i> 주소 복사
+            </button>
+          </div>
+        </div>
+
+        <!-- Contact Cards Details -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+            <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-building text-amber-500"></i>
+              고객 및 배차 지원 안내
+            </h3>
+
+            <div class="space-y-3 text-xs sm:text-sm">
+              <div class="flex items-start gap-3">
+                <div class="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <div class="text-slate-500 text-xs">대표전화 / 24시간 배차 문의</div>
+                  <div class="text-slate-900 font-bold text-base">041-660-7700</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                  <div class="text-slate-500 text-xs">전자세금계산서 및 서류 접수 이메일</div>
+                  <div class="text-slate-900 font-bold font-mono">dhc7700@hanmail.net</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-regular fa-clock"></i>
+                </div>
+                <div>
+                  <div class="text-slate-500 text-xs">운영 및 배차 시간</div>
+                  <div class="text-slate-900 font-medium">연중무휴 24시간 긴급 출동 지원</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coverage Badge -->
+          <div class="bg-gradient-to-br from-slate-900 to-brand-navy p-6 rounded-2xl text-white border border-slate-800">
+            <h4 class="font-bold text-amber-400 text-sm mb-2 flex items-center gap-1.5">
+              <i class="fa-solid fa-compass"></i> 신속 출동 집중 권역
+            </h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              충남 서산(대산공단), 당진(현대제철/부곡공단), 태안, 아산, 평택 등 서해안 및 중부권 산업벨트 전역 
+              긴급 배차가 가능합니다. 타 지역 대규모 프로젝트 도급 계약도 사전 협의 후 전담 지원합니다.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 text-slate-400 border-t border-slate-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-slate-800">
+        
+        <!-- Brand Info -->
+        <div class="md:col-span-5 space-y-3">
+          <div class="flex items-center gap-2 text-white">
+            <span class="w-8 h-8 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center font-black">
+              <i class="fa-solid fa-truck-monster text-sm"></i>
+            </span>
+            <span class="text-lg font-black tracking-tight text-white">(주)대호크레인</span>
+            <span class="text-[10px] text-amber-400 font-mono">DAEHO CRANE</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed text-xs max-w-sm">
+            안전제일주의와 축적된 기술력을 바탕으로 고난도 양중, 플랜트 엔지니어링, 골재 도소매까지 신뢰할 수 있는 스마트 중장비 솔루션을 제공합니다.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="md:col-span-3 space-y-2">
+          <h4 class="text-white font-bold text-sm">바로가기</h4>
+          <ul class="space-y-1.5">
+            <li><a href="#about" class="hover:text-amber-400 transition">회사소개</a></li>
+            <li><a href="#equipment" class="hover:text-amber-400 transition">보유장비 제원</a></li>
+            <li><a href="#safety" class="hover:text-amber-400 transition">스마트 안전관리</a></li>
+            <li><a href="#estimate" class="hover:text-amber-400 transition">온라인 견적문의</a></li>
+          </ul>
+        </div>
+
+        <!-- Official Registration Credentials -->
+        <div class="md:col-span-4 space-y-2">
+          <h4 class="text-white font-bold text-sm">법인 등록 정보</h4>
+          <p class="text-slate-400 leading-relaxed text-[11px]">
+            상호: <strong>(주)대호크레인</strong> | 대표자: <strong>조한구</strong><br>
+            사업자등록번호: <strong class="font-mono text-slate-300">766-81-01447</strong><br>
+            법인등록번호: <strong class="font-mono text-slate-300">161411-0045176</strong><br>
+            사업장: 충청남도 서산시 대산읍 평신1로 221-1<br>
+            업태: 건설업, 도소매업 | 종목: 건설기계도급및대여, 골재<br>
+            이메일: <a href="mailto:dhc7700@hanmail.net" class="text-amber-400 hover:underline">dhc7700@hanmail.net</a>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-slate-500">
+        <div>
+          Copyright &copy; 2019 - 2026 <strong>(주)대호크레인</strong> (DAEHO CRANE CO., LTD.). All Rights Reserved.
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="text-slate-400">안전제일(安全第一)</span>
+          <span>•</span>
+          <span class="text-slate-400">무재해 사업장</span>
+          <span>•</span>
+          <span class="text-slate-400">서해안 크레인 허브</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING QUICK CALL / ESTIMATE BUTTON (Mobile & Desktop) -->
+  <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-2">
+    <a href="tel:041-660-7700" class="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold px-4 py-3 rounded-full shadow-2xl crane-glow transition-transform hover:scale-105 active:scale-95 text-sm">
+      <i class="fa-solid fa-phone-volume text-lg animate-bounce"></i>
+      <span class="hidden sm:inline">24시 배차직통</span>
+      <span class="sm:hidden">배차전화</span>
+    </a>
+  </div>
+
+  <!-- EQUIPMENT SPEC DETAIL MODAL -->
+  <div id="specModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 text-white shadow-2xl relative">
+      <button onclick="closeSpecModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center text-xl font-bold">
+          <i class="fa-solid fa-crane"></i>
+        </div>
+        <h3 id="modalTitle" class="text-lg font-bold text-white">장비 상세 제원</h3>
+      </div>
+
+      <div class="py-2 text-sm text-slate-300 leading-relaxed" id="modalBody">
+        장비 상세 제원 내용이 표시됩니다.
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-800 flex justify-end gap-3">
+        <button onclick="closeSpecModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg">
+          닫기
+        </button>
+        <button onclick="closeSpecModal(); document.getElementById('estimate').scrollIntoView({behavior: 'smooth'})" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold rounded-lg">
+          해당 장비 배차 견적 신청
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION BOX (For alerts without using alert()) -->
+  <div id="toast" class="fixed top-20 right-5 z-50 hidden bg-slate-900 text-white border border-amber-500/50 px-4 py-3 rounded-xl shadow-2xl text-xs sm:text-sm animate-toast flex items-center gap-3">
+    <i class="fa-solid fa-circle-check text-amber-400 text-base"></i>
+    <span id="toastMsg">알림 메시지</span>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Mobile navigation toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        menuIcon.classList.remove('fa-bars');
+        menuIcon.classList.add('fa-xmark');
+      } else {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.add('fa-bars');
+        menuIcon.classList.remove('fa-xmark');
+      }
+    });
+
+    // Close mobile menu on clicking any navigation link
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.add('fa-bars');
+        menuIcon.classList.remove('fa-xmark');
+      });
+    });
+
+    // Toast Notification helper
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.innerText = message;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3500);
+    }
+
+    // Copy to clipboard fallback without using alert()
+    function copyToClipboard(text, successMsg) {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg || '복사되었습니다.');
+      } catch (err) {
+        showToast('클립보드 복사에 실패했습니다.');
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    // Equipment filter tabs
+    function filterEquipment(category) {
+      const buttons = document.querySelectorAll('.equipment-tab-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-amber-500', 'text-slate-950');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.currentTarget.classList.remove('bg-slate-800', 'text-slate-300');
+      event.currentTarget.classList.add('bg-amber-500', 'text-slate-950');
+
+      const cards = document.querySelectorAll('.equipment-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Spec Modal Handlers
+    function openSpecModal(title, description) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalBody').innerHTML = `
+        <p class="mb-3">${description}</p>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs space-y-1.5">
+          <div class="text-amber-400 font-bold mb-1"><i class="fa-solid fa-clipboard-check mr-1"></i> (주)대호크레인 표준 점검 사항</div>
+          <div>✓ 안전인증(KCs) 및 정기안전검사 필증 교부</div>
+          <div>✓ AML(하중표시기), 모멘트 리미터 정상 작동 확인</div>
+          <div>✓ 현장 맞춤 사전 진입로 및 아우트리거 지반 진단</div>
+          <div class="text-emerald-400 font-semibold">✓ 이지세이프(EASY SAFE) 모바일 TBM 및 작업계획서 연동</div>
+        </div>
+      `;
+      document.getElementById('specModal').classList.remove('hidden');
+    }
+
+    // Easy Safe Live Simulator Logic
+    function refreshSimulatorData() {
+      const randomWind = (Math.random() * 3 + 2.5).toFixed(1);
+      const randomAml = Math.floor(Math.random() * 20 + 55);
+      document.getElementById('metricWind').innerText = `${randomWind} m/s`;
+      document.getElementById('metricAml').innerText = `${randomAml}%`;
+      showToast('EASY SAFE 실시간 IoT 센서 데이터가 정상 갱신되었습니다.');
+    }
+
+    function triggerEmergencyDemo(mode) {
+      if (mode === 'wind') {
+        document.getElementById('metricWind').innerText = '12.8 m/s';
+        document.getElementById('metricWind').className = 'text-2xl font-black text-rose-500 mt-1 animate-pulse';
+        showToast('⚠️ [강풍 경보 발령] 풍속 10m/s 초과 감지! 이지세이프 지침에 따라 권상 및 고소 작업이 자동 중단됩니다.');
+      } else if (mode === 'swa') {
+        showToast('🛑 [작업중지권 발동] 현장 근로자의 작업중지 요청이 관제센터 및 전 현장 무전으로 즉시 전파되었습니다.');
+      } else {
+        document.getElementById('metricWind').innerText = '3.2 m/s';
+        document.getElementById('metricWind').className = 'text-2xl font-black text-cyan-400 mt-1';
+        document.getElementById('metricAml').innerText = '64%';
+        showToast('✅ 정상 안전 작업 모드로 복귀 완료되었습니다.');
+      }
+    }
+
+    // Handle Quote Submission
+    function handleQuoteSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('clientName').value;
+      const phone = document.getElementById('clientPhone').value;
+      const date = document.getElementById('workDate').value;
+      const loc = document.getElementById('workLocation').value;
+      const type = document.getElementById('craneType').value;
+      
+      showToast(`[접수 완료] ${name} 고객님의 견적 요청이 전달되었습니다. 담당자가 신속히 연락드리겠습니다.`);
+      
+      // Reset form
+      document.getElementById('quoteForm').reset();
+    }
+  </script>
+</body>
+</html>
