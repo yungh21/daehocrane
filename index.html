@@ -1712,6 +1712,10 @@
       document.getElementById('specModal').classList.remove('hidden');
     }
 
+    function closeSpecModal() {
+      document.getElementById('specModal').classList.add('hidden');
+    }
+
     // Easy Safe Live Simulator Logic
     function refreshSimulatorData() {
       const randomWind = (Math.random() * 3 + 2.5).toFixed(1);
